@@ -4,3 +4,19 @@
 если выборочная средняя M = 80, а объем выборки n = 256.
 """
 
+import scipy.stats as stats
+
+# Исходные данные
+sigma = 16  # Среднеквадратическое отклонение
+n = 256  # Объем выборки
+M = 80  # Выборочное среднее
+confidence_level = 0.95  # Уровень доверия
+
+# Находим Z-значение для заданного уровня доверия
+Z = stats.norm.ppf((1 + confidence_level) / 2)
+
+# Рассчитываем доверительный интервал
+margin_of_error = Z * (sigma / (n ** 0.5))
+confidence_interval = (M - margin_of_error, M + margin_of_error)
+
+print(f"Доверительный интервал: {confidence_interval}")
